@@ -399,15 +399,6 @@ public class AtomSpectraShapeView extends View {
 
 				// render shapes
 				for (Shape shape : shapes) {
-					if (shape.style == Shape.STYLE_LINE || shape.style == Shape.STYLE_DASH) {
-						squareColor.setColor(shape.colorFrom);
-
-						for (int i = 1; i < shape.X.length; i++)
-							if (shape.X[i - 1] >= margin_left)
-								canvas.drawLine(shape.X[i - 1], shape.Y[i - 1], shape.X[i], shape.Y[i], squareColor);
-
-					}
-
 					if (shape.style == Shape.STYLE_BAR) {
 						squareColor.setStyle(Style.FILL);
 						int colorFrom = shape.colorFrom;
@@ -420,6 +411,19 @@ public class AtomSpectraShapeView extends View {
 							}
 						squareColor.setShader(null);
 					}
+					if (true || shape.style == Shape.STYLE_LINE || shape.style == Shape.STYLE_DASH) { // bag line always shown
+						// squareColor.setColor(shape.colorFrom);
+                        int Color_save = shape.colorFrom;
+						squareColor.setColor(Color.WHITE);
+
+						for (int i = 1; i < shape.X.length; i++)
+							if (shape.X[i - 1] >= margin_left)
+								canvas.drawLine(shape.X[i - 1], shape.Y[i - 1], shape.X[i], shape.Y[i], squareColor);
+
+						squareColor.setColor(Color_save);
+
+					}
+
 				}
 
 				LinkedList<Float> lastX = new LinkedList<>();
