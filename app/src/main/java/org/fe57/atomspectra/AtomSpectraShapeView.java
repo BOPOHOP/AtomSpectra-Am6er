@@ -414,7 +414,9 @@ public class AtomSpectraShapeView extends View {
 					if (true || shape.style == Shape.STYLE_LINE || shape.style == Shape.STYLE_DASH) { // bag line always shown
 						// squareColor.setColor(shape.colorFrom);
                         int Color_save = shape.colorFrom;
-						squareColor.setColor(Color.WHITE);
+                        if (shape.style == Shape.STYLE_BAR) {
+						    squareColor.setColor(Color.WHITE);
+                        }
 
 						for (int i = 1; i < shape.X.length; i++)
 							if (shape.X[i - 1] >= margin_left)
