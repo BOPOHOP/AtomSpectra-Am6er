@@ -412,17 +412,17 @@ public class AtomSpectraShapeView extends View {
 						squareColor.setShader(null);
 					}
 					if (true || shape.style == Shape.STYLE_LINE || shape.style == Shape.STYLE_DASH) { // bag line always shown
-						// squareColor.setColor(shape.colorFrom);
-                        int Color_save = shape.colorFrom;
                         if (shape.style == Shape.STYLE_BAR) {
 						    squareColor.setColor(Color.WHITE);
+                        } else {
+						    squareColor.setColor(shape.colorFrom);
                         }
 
 						for (int i = 1; i < shape.X.length; i++)
 							if (shape.X[i - 1] >= margin_left)
 								canvas.drawLine(shape.X[i - 1], shape.Y[i - 1], shape.X[i], shape.Y[i], squareColor);
 
-						squareColor.setColor(Color_save);
+						squareColor.setColor(shape.colorFrom);
 
 					}
 
